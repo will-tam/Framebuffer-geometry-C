@@ -1,5 +1,5 @@
 /* 
-  Draw line from x0; y0) to (x1; y1), 
+  Draw line from (x0; y0) to (x1; y1), 
   with RGB-Alpha color r, g, b, and alpha.
 */
 
