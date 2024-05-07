@@ -23,28 +23,31 @@ Thanks to
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termios.h>                /* General terminal interface: tcgetattr, tcsetattr, tcflush */
+#include <termios.h>                /* General terminal interface: tcgetattr, tcsetattr, tcflush. */
 #include <fcntl.h>
-#include <unistd.h>                 /* Synchronous I/O multiplexing: select, FD_CLR, FD_ISSET, FD_SET, FD_ZERO */
+#include <unistd.h>                 /* Synchronous I/O multiplexing: select, FD_CLR, FD_ISSET, FD_SET, FD_ZERO. */
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 
 #include "fb_design.h"
-/*
 #include "pixel.h"
+/*
 #include "line.h"
 #include "circle.h"
+*/
 #include "one_color_filled_square.h"
+/*
 #include "empty_square.h"
 #include "empty_poly.h"
 #include "empty_circle.h"
 */
 
+
 /******* Variables *******/
-int i;                            /* Some index */
-int rc;                           /* Return code to simplify tuto */
-int ch;                           /* a key pressed */
+int i;                            /* Some index. */
+int rc;                           /* Return code to simplify tuto. */
+int ch;                           /* a key pressed. */
 
 struct framebuffer fb;
 struct pixel p;
@@ -53,15 +56,15 @@ struct pixel p;
 /******* Functions *******/
 void set_non_canonical_mode(int ncm)
 {
-  struct termios info;          /* Get and set  terminal attributes, line control, get and set baud rate */
+  struct termios info;          /* Get and set  terminal attributes, line control, get and set baud rate. */
 
   if (ncm)
   {
-    tcgetattr(0, &info);          /* Get current terminal attirbutes; 0 is the file descriptor for stdin */
-    info.c_lflag &= ~(ICANON|ECHO);      /* Disable canonical mode */
-    info.c_cc[VMIN] = 1;          /* Wait until at least one keystroke available */
-    info.c_cc[VTIME] = 0;         /* No timeout */
-    tcsetattr(0, TCSANOW, &info); /* Set immediately */
+    tcgetattr(0, &info);          /* Get current terminal attirbutes; 0 is the file descriptor for stdin. */
+    info.c_lflag &= ~(ICANON|ECHO);      /* Disable canonical mode. */
+    info.c_cc[VMIN] = 1;          /* Wait until at least one keystroke available. */
+    info.c_cc[VTIME] = 0;         /* No timeout. */
+    tcsetattr(0, TCSANOW, &info); /* Set immediately. */
   }
   else
   {
@@ -71,59 +74,16 @@ void set_non_canonical_mode(int ncm)
   }
 }
 
-void putpixel(struct framebuffer fb, struct pixel p)
-{
-  if (((p.x >= 0) && 
-       (p.y >= 0)) &&   
-     (((unsigned int)p.x <= fb.vinfo.xres - 1) && 
-      ((unsigned int)p.y <= fb.vinfo.yres - 1)))      /* Everybody inside the display */
-  {
-    fb.pxloffset = (p.x + fb.vinfo.xoffset) * (fb.vinfo.bits_per_pixel >> 3) + ((p.y + fb.vinfo.yoffset) * fb.finfo.line_length);
-
-    if (fb.vinfo.bits_per_pixel == 32)
-    {
-      *(fb.fbp + fb.pxloffset) = p.b;
-      *(fb.fbp + fb.pxloffset + 1) = p.g;
-      *(fb.fbp + fb.pxloffset + 2) = p.r;
-      *(fb.fbp + fb.pxloffset + 3) = p.a;
-    }
-    else  /* Assume 16 bpp - Never tried*/
-    {
-      fb.p = p.r<<11 | p.g << 5 | p.b;
-      *((unsigned short int*)(fb.fbp + fb.pxloffset)) = fb.p;
-    }
-  }
-}
-
-void one_color_filled_square()
-{
-  printf("Running one_color_filled_square()\n");
-  for (p.y = 0; (unsigned int)p.y < fb.vinfo.yres / 2; p.y++)
-  {
-    for (p.x = 0; (unsigned int)p.x < fb.vinfo.xres / 2; p.x++)
-    {
-      p.r = 255;
-      p.g = 255;
-      p.b = 255;
-      p.a = 0;
-      putpixel(fb, p);
-    }
-  }
-
-  printf("Final pxloffset = %ld\n", fb.pxloffset);
-  printf("/dev/fb0 has been painted successfully.\n\n");
-}
-
 void line(int x0, int y0, int x1, int y1, 
           unsigned int r, unsigned int g, unsigned int b, unsigned int alpha)
 {  
-  int dx;         /* diff beetween x coordinates */
-  int sx;         /* According the starting x, add or sub 1 to the next x */
-  int dy;         /* diff beetween y coordinates */
-  int sy;         /* According the starting y, add or sub 1 to the next y */
+  int dx;         /* diff beetween x coordinates. */
+  int sx;         /* According the starting x, add or sub 1 to the next x. */
+  int dy;         /* diff beetween y coordinates. */
+  int sy;         /* According the starting y, add or sub 1 to the next y. */
 
-  int err;        /* Error beetween real line and the pixel to draw it */
-  int e2;         /* err * 2 */
+  int err;        /* Error beetween real line and the pixel to draw it. */
+  int e2;         /* err * 2. */
  
   dx = abs(x1 - x0);
   dy = -abs(y1 - y0);
@@ -144,13 +104,13 @@ void line(int x0, int y0, int x1, int y1,
     putpixel(fb, p);
 
     if (p.x == x1 && p.y == y1) break;
-    e2 = err + err;     /* Better add than mul, for only by 2 - also could use <<1 */
-    if (e2 >= dy)       /* err * 2 + delta_x > 0 */
+    e2 = err + err;     /* Better add than mul, for only by 2 - also could use <<1. */
+    if (e2 >= dy)       /* err * 2 + delta_x > 0. */
     { 
       err += dy;
       p.x += sx; 
     }
-    if (e2 <= dx)       /* err * 2 + delta_y < 0 */
+    if (e2 <= dx)       /* err * 2 + delta_y < 0. */
     {
       err += dx;
       p.y += sy;
@@ -227,9 +187,9 @@ void empty_poly()
     sizeof(polygone3) / sizeof(coords)
   };
 
-  unsigned int i, j;    /* i = index of point to read for the j-th polygon */
-  int x0, y0;           /* First point */
-  int x1, y1;           /* Last point */
+  unsigned int i, j;    /* i = index of point to read for the j-th polygon. */
+  int x0, y0;           /* First point. */
+  int x1, y1;           /* Last point. */
   
   printf("Running empty_poly()\n");
 
@@ -252,8 +212,8 @@ void empty_poly()
 void circle(int xc, int yc, int radius,
             unsigned int r, unsigned int g, unsigned int b, unsigned int alpha)
 {
-  int x, y;       /* (x,y) of the circle it-self */
-  int err;        /* Error beetween real circle and the pixel to draw it */
+  int x, y;       /* (x,y) of the circle it-self. */
+  int err;        /* Error beetween real circle and the pixel to draw it. */
 	
   x = 0;
 	y = radius;
@@ -326,7 +286,7 @@ void empty_circle()
     {fb.vinfo.xres - 20, fb.vinfo.yres - 20, 233}
   };
 
-  int i;      /* index of circle to read */
+  int i;      /* index of circle to read. */
 
   printf("Running empty_circle()\n");
 
@@ -339,25 +299,25 @@ void empty_circle()
 
 int main()
 {
-  /* Functions array to display some geometry */
+  /* Functions array to display some geometry. */
   typedef void (*fptr)(void);
   fptr geom_funcaddr[] = {
     one_color_filled_square,
     empty_square,
     empty_poly,
     empty_circle
-  };    /* List of function drawing geometric fig one after one */
+  };    /* List of function drawing geometric fig one after one. */
 
 
-  set_non_canonical_mode(1);      /* Prepare for C keypressed-like     set_non_canonical_mode(1);() */
+  set_non_canonical_mode(1);      /* Prepare for C keypressed-like     set_non_canonical_mode(1);(). */
 
   for (i = 0; i < (int)(sizeof(geom_funcaddr) / sizeof(void*)); i++)
   {
     printf("%p\n",geom_funcaddr[i]);    
   }
 
-  /* Open the fb devive file for R/W */
-  fb.fbfd = open("/dev/fb0", O_RDWR);    /* Ecpect the first FB is allowed */
+  /* Open the fb devive file for R/W. */
+  fb.fbfd = open("/dev/fb0", O_RDWR);    /* Ecpect the first FB is allowed. */
 
   if (fb.fbfd == -1)
   {
@@ -366,7 +326,7 @@ int main()
   }
   printf("/dev/fb0 opened.\n");
 
-  /* Get fixed informations about screen */
+  /* Get fixed informations about screen. */
   rc = ioctl(fb.fbfd, FBIOGET_FSCREENINFO, &fb.finfo);
   printf("\nioctl(fb.fbfd, FBIOGET_FSCREENINFO, &fb.finfo) rc = %d\n", rc);
   if (rc)
@@ -376,7 +336,7 @@ int main()
     exit(2);
   }
 
-  /* Get variable informations about screen */
+  /* Get variable informations about screen. */
   rc = ioctl(fb.fbfd, FBIOGET_VSCREENINFO, &fb.vinfo);
   printf("\nioctl(fb.fbfd, FBIOGET_VSCREENINFO, &fb.vinfo) rc = %d\n", rc);
   if (rc)
@@ -395,7 +355,7 @@ int main()
   printf("rotate = %d\n", fb.vinfo.rotate);
   printf("activate = %d\n", fb.vinfo.activate);
 
-  /* Map /dev/fb0 to vRAM */
+  /* Map /dev/fb0 to vRAM. */
   fb.fbp = (char *) mmap(0, fb.screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fb.fbfd, 0);
   if ((long) fb.fbp == -1)
   {
@@ -413,21 +373,21 @@ int main()
   }
   printf("/dev/fb0 is mapped to vRAM\n\n");
 
-  /* Display all examples */ 
+  /* Display all examples. */ 
   for (i = 0; i < (int)(sizeof(geom_funcaddr) / sizeof(void*)); i++)
   {
 
-    /* Clear screen */
+    /* Clear screen. */
     memset(fb.fbp, 0, fb.screensize);
 
-    /* Print something on screen according */
+    /* Print something on screen according. */
     geom_funcaddr[i]();
 
 
     printf("\nESC to continue\n\n");
-    while((ch = getchar()) != 27 ) /* ascii ESC */
+    while((ch = getchar()) != 27 ) /* ascii ESC. */
     {
-        /* Just wait a ESC-presskey */
+        /* Just wait a ESC-presskey. */
     }
   }
 
@@ -444,7 +404,7 @@ int main()
     printf("/dev/fb0 closed\n");
   }
 
-  set_non_canonical_mode(0);    /* Return normal mode for terminal echo */
+  set_non_canonical_mode(0);    /* Return normal mode for terminal echo. */
 
   return 0;
 }
