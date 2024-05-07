@@ -1,19 +1,23 @@
 CC=gcc
+
 #CFLAGS= -Wall -Wextra -Werror -g -ansi #-O3
 CFLAGS= -Wall -Wextra -g #-ansi #-O3
-LIBS=
+LDFLAGS=
 
-.c.o:
-	$(CC) $(CFLAGS) -c $<
+TOBUILD=geometry
 
-PRG=geometry
+SRC= $(wildcard *.c)
+OBJ= $(SRC:.c=.o)
 
-OBJ=$(PRG).o
+all: $(TOBUILD)
 
-all: $(OBJ)
-	$(CC) $(OBJ) $(LIBS) -o $(PRG)
-	
-$(OBJ): $(PRG).c
+$(TOBUILD): $(OBJ)
+	@$(CC) -o $@ $^ $(LDFLAGS)
+
+%.o: %.c
+	@$(CC) -o $@ -c $< $(CFLAGS)
+
+.PHONY: clean clean_all
 
 clean:
 	@rm *.o || true
@@ -22,7 +26,7 @@ clean:
 	@rm *~ || true
 
 clean_all:
-	@rm *.o $(PRG) || true
+	@rm *.o $(TOBUILD) || true
 	@rm *.*~ || true
 	@rm *.~ || true
 	@rm *~ || true
