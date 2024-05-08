@@ -10,6 +10,7 @@ struct framebuffer {
   long int screensize;              /* Figure out the size of screen in bytes. */
 
   char *fbp;                        /* Framebuffer pointer in vRAM. */
+  char *dbp;                        /* Double buffer pointer. */
 
   unsigned short int p;             /* Pixel in 16 bpp mode. */
   long int pxloffset;               /* Real offset of pixel in vRAM. */

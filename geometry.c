@@ -31,9 +31,9 @@ Thanks to
 #include <sys/mman.h>
 
 #include "fb_design.h"
-#include "pixel.h"
-#include "line.h"
-#include "circle.h"
+//#include "pixel.h"
+//#include "line.h"
+//#include "circle.h"
 #include "one_color_filled_square.h"
 #include "empty_square.h"
 #include "empty_poly.h"
@@ -77,6 +77,7 @@ int main()
   typedef void (*fptr)(void);
   fptr geom_funcaddr[] = {
     one_color_filled_square,
+    //one_color_filled_rectangle,
     empty_square,
     empty_poly,
     empty_circle
@@ -133,6 +134,7 @@ int main()
   fb.fbp = (char *) mmap(0, fb.screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fb.fbfd, 0);
   if ((long) fb.fbp == -1)
   {
+    perror("/dev/fb0 can't be mapped");
     rc = close(fb.fbfd);
     if (rc == -1)
     {
@@ -147,16 +149,38 @@ int main()
   }
   printf("/dev/fb0 is mapped to vRAM\n\n");
 
+  fb.dbp = calloc(fb.screensize, sizeof(char));
+  if (fb.dbp == NULL)
+  {
+    perror("Double buffer allocation error");
+  
+    munmap(fb.fbp, fb.screensize);
+
+    rc = close(fb.fbfd);
+    if (rc == -1)
+    {
+      perror("Coundn't close /dev/fb0");
+    }
+    else
+    {
+      printf("/dev/fb0 closed\n");
+    }
+    perror("Fail to map /dev/fb0 to vRAM");
+    exit(4);
+  }
+
   /* Display all examples. */ 
   for (i = 0; i < (int)(sizeof(geom_funcaddr) / sizeof(void*)); i++)
   {
 
     /* Clear screen. */
-    memset(fb.fbp, 0, fb.screensize);
+    //memset(fb.fbp, 0, fb.screensize);
+    memset(fb.dbp, 0, fb.screensize);
 
     /* Print something on screen according. */
     geom_funcaddr[i]();
 
+    memcpy(fb.fbp, fb.dbp, fb.screensize);
 
     printf("\nESC to continue\n\n");
     while((ch = getchar()) != 27 ) /* ascii ESC. */
@@ -166,6 +190,7 @@ int main()
   }
 
   /* Close memory mapped and file descriptor. */
+  free(fb.dbp);
   munmap(fb.fbp, fb.screensize);
 
   rc = close(fb.fbfd);

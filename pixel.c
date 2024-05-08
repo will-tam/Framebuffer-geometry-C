@@ -10,19 +10,20 @@ void putpixel(struct framebuffer fb, struct pixel p)
      (((unsigned int)p.x <= fb.vinfo.xres - 1) && 
       ((unsigned int)p.y <= fb.vinfo.yres - 1)))      /* Everybody inside the display. */
   {
-    fb.pxloffset = (p.x + fb.vinfo.xoffset) * (fb.vinfo.bits_per_pixel >> 3) + ((p.y + fb.vinfo.yoffset) * fb.finfo.line_length);
+    fb.pxloffset = (p.x + fb.vinfo.xoffset) * (fb.vinfo.bits_per_pixel >> 3) + 
+                   ((p.y + fb.vinfo.yoffset) * fb.finfo.line_length);
 
     if (fb.vinfo.bits_per_pixel == 32)
     {
-      *(fb.fbp + fb.pxloffset) = p.b;
-      *(fb.fbp + fb.pxloffset + 1) = p.g;
-      *(fb.fbp + fb.pxloffset + 2) = p.r;
-      *(fb.fbp + fb.pxloffset + 3) = p.a;
+      *(fb.dbp + fb.pxloffset) = p.b;
+      *(fb.dbp + fb.pxloffset + 1) = p.g;
+      *(fb.dbp + fb.pxloffset + 2) = p.r;
+      *(fb.dbp + fb.pxloffset + 3) = p.a;
     }
     else  /* Assume 16 bpp - Never tried. */
     {
       fb.p = p.r<<11 | p.g << 5 | p.b;
-      *((unsigned short int*)(fb.fbp + fb.pxloffset)) = fb.p;
+      *((unsigned short int*)(fb.dbp + fb.pxloffset)) = fb.p;
     }
   }
 }
