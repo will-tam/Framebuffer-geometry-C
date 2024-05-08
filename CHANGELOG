@@ -1,0 +1,19 @@
+2024-05-07 : 1st commit 
+
+2024-05-07 : Add fb_design.h 
+
+2024-05-07 : Change Makefile to be efficient 
+
+2024-05-08 : Add pixel.* 
+
+2024-05-08 : Add one_color_filled_square.* 
+
+2024-05-08 : Add line.* 
+
+2024-05-08 : Add circle.* 
+
+2024-05-08 : Add empty_square.* 
+
+2024-05-08 : Add empty_poly.* 
+
+2024-05-08 : Add empty_circle.* 
