@@ -37,9 +37,7 @@ Thanks to
 #include "one_color_filled_square.h"
 #include "empty_square.h"
 #include "empty_poly.h"
-/*
 #include "empty_circle.h"
-*/
 
 
 /******* Variables *******/
@@ -69,30 +67,6 @@ void set_non_canonical_mode(int ncm)
     tcgetattr(0, &info);
     info.c_lflag |= (ICANON|ECHO);
     tcsetattr(0, TCSANOW, &info);
-  }
-}
-
-void empty_circle()
-{ 
-  struct Circle {
-    int xc, yc;
-    int radius;
-  } c;
-
-  struct Circle circles[] = {
-    {fb.vinfo.xres / 2, fb.vinfo.yres / 2, 100},
-    {10, 10, 10},
-    {30, 50, 70},
-    {fb.vinfo.xres - 20, fb.vinfo.yres - 20, 233}
-  };
-
-  int i;      /* index of circle to read. */
-
-  printf("Running empty_circle()\n");
-
-  for (i = 0; i < (int)(sizeof(circles) / sizeof(c)); i++)
-  {
-    circle(circles[i].xc, circles[i].yc, circles[i].radius, 255, 128, 0, 0);
   }
 }
 
