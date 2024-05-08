@@ -8,4 +8,6 @@
 */
 void one_color_filled_square();
 
+void one_color_filled_rectangle();
+
 #endif

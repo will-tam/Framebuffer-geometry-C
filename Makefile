@@ -2,6 +2,7 @@ CC=gcc
 
 #CFLAGS= -Wall -Wextra -Werror -g -ansi #-O3
 CFLAGS= -Wall -Wextra -g #-ansi #-O3
+#CFLAGS= -Wall -Wextra -g -O3
 LDFLAGS=
 
 TOBUILD=geometry

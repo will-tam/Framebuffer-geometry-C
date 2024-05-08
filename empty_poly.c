@@ -2,7 +2,7 @@
 #include <linux/fb.h>
 
 #include "fb_design.h"
-#include "line.h"
+#include "lines.h"
 #include "empty_poly.h"
 
 

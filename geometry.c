@@ -77,7 +77,7 @@ int main()
   typedef void (*fptr)(void);
   fptr geom_funcaddr[] = {
     one_color_filled_square,
-    //one_color_filled_rectangle,
+    one_color_filled_rectangle,
     empty_square,
     empty_poly,
     empty_circle

@@ -12,7 +12,7 @@ struct framebuffer {
   char *fbp;                        /* Framebuffer pointer in vRAM. */
   char *dbp;                        /* Double buffer pointer. */
 
-  unsigned short int p;             /* Pixel in 16 bpp mode. */
+  unsigned short int p16;           /* Pixel in 16 bpp mode. */
   long int pxloffset;               /* Real offset of pixel in vRAM. */
   struct fb_var_screeninfo vinfo;   /* Framebuffer variable video information. */
   struct fb_fix_screeninfo finfo;   /* Framebuffer fixed video information. */
