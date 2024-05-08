@@ -7,7 +7,7 @@
 
 
 /******* Variables *******/
-extern struct framebuffer fb;
+extern struct framebuffer fb;   /* see fb_design.h */
 extern struct pixel p;
 
 

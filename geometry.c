@@ -35,20 +35,20 @@ Thanks to
 #include "line.h"
 #include "circle.h"
 #include "one_color_filled_square.h"
-/*
 #include "empty_square.h"
+/*
 #include "empty_poly.h"
 #include "empty_circle.h"
 */
 
 
 /******* Variables *******/
+struct framebuffer fb;
+struct pixel p;
+
 int i;                            /* Some index. */
 int rc;                           /* Return code to simplify tuto. */
 int ch;                           /* a key pressed. */
-
-struct framebuffer fb;
-struct pixel p;
 
 
 /******* Functions *******/
@@ -70,23 +70,6 @@ void set_non_canonical_mode(int ncm)
     info.c_lflag |= (ICANON|ECHO);
     tcsetattr(0, TCSANOW, &info);
   }
-}
-
-void empty_square()
-{
-  unsigned int x0, y0, x1, y1;
-  
-  printf("Running empty_square()\n");
-
-  x0 = (fb.vinfo.xres / 2) + 100;
-  y0 = (fb.vinfo.yres / 2) + 100;
-  x1 = (fb.vinfo.xres / 2) - 100;
-  y1 = (fb.vinfo.yres / 2) - 100;
-
-  line(x0, y0, x1, y0, 255, 255, 255, 0);  
-  line(x1, y1, x0, y1, 255, 255, 255, 0);  
-  line(x0, y0, x0, y1, 255, 255, 255, 0);  
-  line(x1, y1, x1, y0, 255, 255, 255, 0);
 }
 
 void empty_poly()

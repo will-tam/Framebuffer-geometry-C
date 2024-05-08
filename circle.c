@@ -1,5 +1,3 @@
-//#include <stdio.h>
-//#include <stdlib.h>
 #include <linux/fb.h>
 
 #include "fb_design.h"
@@ -8,7 +6,7 @@
 
 
 /******* Variables *******/
-extern struct framebuffer fb;
+extern struct framebuffer fb;   /* see fb_design.h */
 extern struct pixel p;
 
 
