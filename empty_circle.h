@@ -2,7 +2,7 @@
 #define _EMPTY_CIRCLE_H
 
 /* 
-  Just draw some polygons,
+  Just draw some circle.
 */
 void empty_circle();
 

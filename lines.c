@@ -64,9 +64,9 @@ void hline(int x0, int x1, int y,
   if (y < 0) { y = 0; }
   if (x0 < 0) { x0 = 0; }
   if (x1 < 0) { x1 = 0; }
-  if ((unsigned int)x0 > fb.vinfo.xres - 1) { x0 = fb.vinfo.xres - 1; }
-  if ((unsigned int)x1 > fb.vinfo.xres - 1) { x1 = fb.vinfo.xres - 1; }
-  if ((unsigned int)y > fb.vinfo.yres - 1) { y = fb.vinfo.yres - 1; }
+  if ((unsigned int)x0 > fb.vinfo.xres) { x0 = fb.vinfo.xres; }
+  if ((unsigned int)x1 > fb.vinfo.xres) { x1 = fb.vinfo.xres; }
+  if ((unsigned int)y > fb.vinfo.yres) { y = fb.vinfo.yres; }
 
   p.x = x0 < x1 ? x0 : x1;    /* Which is the the 1st ? */ 
   p.y = y;

@@ -31,14 +31,11 @@ Thanks to
 #include <sys/mman.h>
 
 #include "fb_design.h"
-//#include "pixel.h"
-//#include "line.h"
-//#include "circle.h"
-#include "color_filled_square.h"
-#include "empty_square.h"
+#include "color_filled_rectangle.h"
+#include "empty_rectangle.h"
 #include "empty_poly.h"
 #include "empty_circle.h"
-
+#include "color_filled_circle.h"
 
 /******* Variables *******/
 struct framebuffer fb;
@@ -80,7 +77,8 @@ int main()
     color_filled_rectangle_t2,
     empty_square,
     empty_poly,
-    empty_circle
+    empty_circle,
+    color_filled_circle
   };    /* List of function drawing geometric fig one after one. */
 
 

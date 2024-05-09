@@ -5,7 +5,7 @@
 #include "fb_design.h"
 #include "pixel.h"
 #include "lines.h"
-#include "color_filled_square.h"
+#include "color_filled_rectangle.h"
 
 
 /******* Variables *******/

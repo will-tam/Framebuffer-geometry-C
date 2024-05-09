@@ -2,7 +2,7 @@
 #include <linux/fb.h>
 
 #include "fb_design.h"
-#include "circle.h"
+#include "circles.h"
 #include "empty_circle.h"
 
 

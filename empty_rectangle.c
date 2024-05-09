@@ -3,7 +3,7 @@
 
 #include "fb_design.h"
 #include "lines.h"
-#include "empty_square.h"
+#include "empty_rectangle.h"
 
 
 /******* Variables *******/
