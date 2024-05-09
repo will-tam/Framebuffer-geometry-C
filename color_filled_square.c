@@ -5,7 +5,7 @@
 #include "fb_design.h"
 #include "pixel.h"
 #include "lines.h"
-#include "one_color_filled_square.h"
+#include "color_filled_square.h"
 
 
 /******* Variables *******/
@@ -13,7 +13,7 @@ extern struct framebuffer fb;   /* see fb_design.h */
 extern struct pixel p;
 
 
-void one_color_filled_square()
+void color_filled_rectangle_t1()
 {
   struct Coords {
     int x0, y0;
@@ -52,7 +52,7 @@ void one_color_filled_square()
   printf("/dev/fb0 has been painted successfully.\n\n");
 }
 
-void one_color_filled_rectangle()
+void color_filled_rectangle_t2()
 {
   struct Coords {
     int x0, y0;

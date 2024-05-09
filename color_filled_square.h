@@ -6,8 +6,8 @@
   from point(0; 0) to point(fb.vinfo.xres / 2; fb.vinfo.yres / 2).
   First example to show how to display picture on FB.
 */
-void one_color_filled_square();
+void color_filled_rectangle_t1();
 
-void one_color_filled_rectangle();
+void color_filled_rectangle_t2();
 
 #endif

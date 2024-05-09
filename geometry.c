@@ -34,7 +34,7 @@ Thanks to
 //#include "pixel.h"
 //#include "line.h"
 //#include "circle.h"
-#include "one_color_filled_square.h"
+#include "color_filled_square.h"
 #include "empty_square.h"
 #include "empty_poly.h"
 #include "empty_circle.h"
@@ -76,8 +76,8 @@ int main()
   /* Functions array to display some geometry. */
   typedef void (*fptr)(void);
   fptr geom_funcaddr[] = {
-    one_color_filled_square,
-    one_color_filled_rectangle,
+    color_filled_rectangle_t1,
+    color_filled_rectangle_t2,
     empty_square,
     empty_poly,
     empty_circle
