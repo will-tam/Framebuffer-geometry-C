@@ -1,5 +1,5 @@
-#ifndef _ONE_COLOR_FILLED_SQUARE_H
-#define _ONE_COLOR_FILLED_SQUARE_H
+#ifndef COLOR_FILLED_SQUARE_H
+#define COLOR_FILLED_SQUARE_H
 
 /* 
   Just fill a full white rectangle,
