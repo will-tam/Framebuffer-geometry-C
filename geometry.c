@@ -17,7 +17,7 @@ Thanks to
   - https://fr.wikipedia.org/wiki/Algorithme_de_trac%C3%A9_de_cercle_d'Andres
   - https://gist.github.com/bert/1085538
 
-(c) GPL v3 - FREE to use or modify, but don't an IT manager-like, THANK back all of us.
+(c) GPL v3 - FREE to use or modify, but don't show this to an IT manager-like, THANKS back all of you.
 */
 
 #include <stdio.h>
