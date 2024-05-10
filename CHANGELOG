@@ -1,19 +1,85 @@
-2024-05-07 : 1st commit 
+2024-05-09  will_tam <will_tam@club-internet.fr>
 
-2024-05-07 : Add fb_design.h 
+	* circles.c, circles.h, color_filled_circle.c,
+	color_filled_circle.h: Add color_filled_circle.*
 
-2024-05-07 : Change Makefile to be efficient 
+2024-05-09  will_tam <will_tam@club-internet.fr>
 
-2024-05-08 : Add pixel.* 
+	* circle.c, circle.h, color_filled_square.c =>
+	color_filled_rectangle.c, color_filled_square.h =>
+	color_filled_rectangle.h, empty_circle.c, empty_circle.h,
+	empty_poly.h, empty_square.c => empty_rectangle.c, empty_square.h
+	=> empty_rectangle.h, geometry.c, lines.c: Change filename
 
-2024-05-08 : Add one_color_filled_square.* 
+2024-05-09  will_tam <will_tam@club-internet.fr>
 
-2024-05-08 : Add line.* 
+	* color_filled_square.h: Change filename
 
-2024-05-08 : Add circle.* 
+2024-05-09  will_tam <will_tam@club-internet.fr>
 
-2024-05-08 : Add empty_square.* 
+	* one_color_filled_square.c => color_filled_square.c,
+	one_color_filled_square.h => color_filled_square.h, geometry.c: 
+	Change filename
 
-2024-05-08 : Add empty_poly.* 
+2024-05-08  will_tam <will_tam@club-internet.fr>
 
-2024-05-08 : Add empty_circle.* 
+	* Makefile, empty_poly.c, empty_square.c, fb_design.h, geometry.c,
+	line.c, lines.c, line.h => lines.h, one_color_filled_square.c,
+	one_color_filled_square.h, pixel.c: Add hline()
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* fb_design.h, geometry.c, pixel.c: Add double buffer
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* README.md: Add some greeting
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* CHANGELOG, LICENSE, README.md: Add CHANGELOG, LICENSE, README.md
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* empty_circle.c, empty_circle.h, geometry.c: Add empty_circle.*
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* empty_poly.c, empty_poly.h, geometry.c: Add empty_poly.*
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* circle.c, circle.h, empty_square.c, empty_square.h, geometry.c,
+	line.c, line.h, one_color_filled_square.c,
+	one_color_filled_square.h, pixel.h: Add empty_square.*
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* circle.c, circle.h, geometry.c, line.c, line.h: Add circle.*
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* geometry.c, line.c, line.h, one_color_filled_square.c, pixel.c: 
+	Add line.*
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* one_color_filled_square.c, one_color_filled_square.h: Add
+	one_color_filled_square.*
+
+2024-05-08  will_tam <will_tam@club-internet.fr>
+
+	* fb_design.h, geometry.c, pixel.c, pixel.h: Add pixel.*
+
+2024-05-07  will_tam <will_tam@club-internet.fr>
+
+	* Makefile: Change Makefile to be efficient
+
+2024-05-07  will_tam <will_tam@club-internet.fr>
+
+	* .gitignore, fb_design.h, geometry.c: Add fb_design.h
+
+2024-05-07  will_tam <will_tam@club-internet.fr>
+
+	* 1st commit
+
