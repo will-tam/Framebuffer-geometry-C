@@ -27,7 +27,7 @@ void color_filled_rectangle_t1()
     {fb.vinfo.xres / 2 - 10, fb.vinfo.yres + 10, - 2, fb.vinfo.yres / 2 + 10} /* Should NOT be displayed */
   };
 
-  unsigned int i;      /* index of circle to read. */
+  unsigned int i;      /* index of squares to read. */
 
 
   printf("Running one_color_filled_square()\n");
@@ -66,11 +66,12 @@ void color_filled_rectangle_t2()
     {fb.vinfo.xres / 2 - 10, fb.vinfo.yres + 10, - 2, fb.vinfo.yres / 2 + 10}
   };
 
-  unsigned int i;       /* index of circle to read. */
+  unsigned int i;       /* index of squares to read. */
   int y0, y1;           /* To check if y0 < y1 or not */ 
 
   printf("Running one_color_filled_rectangle()\n");
 
+  /* Don't really need, but struct p is already declared */
   p.r = 0xdd;
   p.g = 0xee;
   p.b = 0xff;
