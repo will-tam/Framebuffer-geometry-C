@@ -1,4 +1,4 @@
-# Framebuffer colored clock (C version)
+# Framebuffer Geometry (C version)
 
 Just a drawing test directly on the Linux framebuffer.
 
