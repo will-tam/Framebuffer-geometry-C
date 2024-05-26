@@ -13,10 +13,10 @@ OBJ= $(SRC:.c=.o)
 all: $(TOBUILD)
 
 $(TOBUILD): $(OBJ)
-	@$(CC) -o $@ $^ $(LDFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -o $@ -c $< $(CFLAGS)
 
 .PHONY: clean clean_all
 
