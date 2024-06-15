@@ -119,7 +119,7 @@ int main()
     exit(3);
   }
 
-  fb.screensize = fb.vinfo.xres_virtual * fb.vinfo.yres * fb.vinfo.bits_per_pixel >> 3;
+  fb.screensize = fb.vinfo.xres_virtual * fb.vinfo.yres_virtual * fb.vinfo.bits_per_pixel >> 3;
 
   printf("(x; y) res = %d X %d, %d bpp\n", fb.vinfo.xres, fb.vinfo.yres, fb.vinfo.bits_per_pixel);
   printf("(x; y) virtual res = %d X %d, %d bpp\n", fb.vinfo.xres_virtual, fb.vinfo.yres_virtual, fb.vinfo.bits_per_pixel);
